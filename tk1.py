@@ -87,23 +87,23 @@ def delete():
 
 def eventbyname():
     global name
-    name=e4.get()
-    # var = str(name)
+    name1=e4.get()
 
+    mysqldb=mysql.connector.connect(host="localhost",user="root",password="",database="details")
+    mycursor=mysqldb.cursor()
+    mycursor.execute("SELECT * FROM detail where eventtype=%s",(name1,))
+    for i in mycursor:
+        print(i)
+
+def eventbyperson():
+    global name2
+    name2=e5.get()
     
     mysqldb=mysql.connector.connect(host="localhost",user="root",password="",database="details")
     mycursor=mysqldb.cursor()
-
-    try:
-        
-        sql="select * from detail where eventtype = var"
-
-        mycursor.execute(sql,)
-
-    except Exception as e:
-        print(e)
-        mysqldb.rollback()
-        mysqldb.close()
+    mycursor.execute("SELECT * FROM detail where name=%s",(name2,))
+    for i in mycursor:
+        print(i)
 
 
 
@@ -127,7 +127,7 @@ global e1
 global e2
 global e3
 global e4
-# global e5
+global e5
 
 tk.Label(root,text="Event Management" , fg="red", font=(None,30)).place(x=300,y=5) #name
 
@@ -136,7 +136,7 @@ Label(root,text="Person Name").place(x=10,y=40)
 Label(root,text="Event Type").place(x=10,y=70)
 
 Label(root,text='Search_by_event').place(x=10,y=100)
-# Label(root,text="Search_by_name").place(x=400,y=100)
+Label(root,text="Search_by_name").place(x=400,y=100)
 
 
 e1=Entry(root) #textfield positions
@@ -151,14 +151,14 @@ e3.place(x=140,y=70)
 e4=Entry(root)
 e4.place(x=140,y=100)
 
-# e5=Entry(root)
-# e5.place(x=550,y=100)
+e5=Entry(root)
+e5.place(x=550,y=100)
 
 Button(root,text="Add",command=Add,height=3,width=13).place(x=30,y=130)  #buttons dd,update,delete
 Button(root,text="update",command=update,height=3,width=13).place(x=140,y=130)
 Button(root,text="Delete",command=delete,height=3,width=13).place(x=250,y=130)
-Button(root,text="Eventbyname",command=eventbyname,height=3,width=13).place(x=360,y=130)
-# Button(root,text="Eventbyperson",command=eventbyperson,height=3,width=13).place(x=470,y=130)
+Button(root,text="searchbyevent",command=eventbyname,height=3,width=13).place(x=360,y=130)
+Button(root,text="searchbyname",command=eventbyperson,height=3,width=13).place(x=490,y=130)
 
 
 cols=('id','name','eventtype') #columns display on gui
