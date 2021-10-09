@@ -1,6 +1,5 @@
 import tkinter as tk;
 from tkinter import ttk,messagebox
-from tkinter.font import names
 import mysql.connector
 from tkinter import *
 
