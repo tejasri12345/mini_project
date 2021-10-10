@@ -35,8 +35,6 @@ def Add():
 
     except Exception as e:
         print(e)
-        mysqldb.rollback()
-        mysqldb.close()
 
 def update():
     personid=e1.get()
@@ -60,8 +58,7 @@ def update():
     
     except Exception as e:
         print(e)
-        mysqldb.rollback()
-        mysqldb.close()
+    
 
 def delete():
      personid=e1.get()
@@ -81,8 +78,6 @@ def delete():
          e3.delete(0,END)
      except Exception as e:
          print(e)
-         mysqldb.rollback()
-         mysqldb.close()
 
 
 def eventbyname():
